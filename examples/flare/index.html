@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- BASED on http://jsfiddle.net/Y2zue/-->
+<!--http://www.stator-afm.com/tutorial/d3-js-mouse-events/-->
+<html>
+
+<head>
+    <title>Treemap Example</title>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="../js/lineargauge.min.js"></script>
+    <link rel="stylesheet" href="../css/linear-gauge.css"></link>
+    <!--    <script src="https://rawgit.com/lflores/treemap/master/dist/js/treemap.min.js"></script>-->
+    <script src="../../dist/js/treemap.min.js"></script>
+    <!--<script src="../../src/js/treemap.js"></script>
+    <script src="../../src/js/custom-tooltip.js"></script>
+    <script src="../../src/js/utils.js"></script>-->
+    <link rel="stylesheet" href="../css/treemap.css"></link>
+    <link rel="stylesheet" href="../css/basic-styles.css"></link>
+    <link rel="stylesheet" href="css/flare.css"></link>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+    <div id="container" class="container">
+        <header>
+            <h3>Treemap Example - "Flare" number lines comparison</h3>
+            <p>This example shows Gravity Bubble interaction and color changes. Based on flare.json data example</p>
+            <form>
+                <h5>Color Scheme:</h5>
+                <label>
+                    <input type="radio" name="color-scheme" value="blue" checked>Default
+                </label>
+                <label>
+                    <input type="radio" name="color-scheme" value="green">Green
+                </label>
+                <label>
+                    <input type="radio" name="color-scheme" value="greenred">Red To Green
+                </label>
+                <label>
+                    <input type="radio" name="color-scheme" value="brown">Brown
+                </label>
+                <div id="gauge"></div>
+            </form>
+
+            <form>
+                <h5>Resize:</h5>
+                <div id="size" class="btn-group">
+                    <a href="#" id="mini" class="btn btn-sm">Mini</a>
+                    <a href="#" id="medium" class="btn btn-sm active">Medium</a>
+                    <a href="#" id="max" class="btn btn-sm">Large</a>
+                </div>
+            </form>
+            <form>
+                <h5>Autosize:</h5>
+                <label>
+                    <input type="checkbox" name="autosize" value="blue" checked>
+                </label>
+            </form>
+            <ol class="breadcrumb">
+                <!--<li class="active"><a href="#">flare</a></li>-->
+            </ol>
+        </header>
+        <div id="main" role="main">
+            <div id="description">
+                <p>Based on common tree data "flare", and using <a href="http://www.d3js.org">D3js</a> library, this example the use of treemap component.</p>
+                <p>The <b>size of each rectangle</b> is the <b>size of each node</b>, and <b>color</b> is the <b>percentage of total size</b> that cover this node. If you <b>click in a rectangle</b>, you can do a <b>drilldown</b> and dive into data tree</p>
+                <p>Also, you have a breadcrumb to drill up data</p>
+            </div>
+            <div id="vis"></div>
+        </div>
+        <!--
+<footer>
+    <p>A demonstration of animated bubble charts in D3.js, based on next examples and ideas</p>
+    <p><a href="http://vallandingham.me/bubble_charts_in_d3.html" target="_blank">Jim Vallandingham Blog Post</a> | </p>
+</footer>
+-->
+    </div>
+
+    <script type="text/javascript" src="js/flare.js"></script>
+    <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+In folder examples you have and example called flare, that shows functionalities of component.

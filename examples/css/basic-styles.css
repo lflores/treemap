@@ -1,0 +1,92 @@
+body {
+    font-family: "Verdana";
+    font-size: 8pt;
+}
+
+form {
+    display: inline-block;
+    vertical-align: top;
+    padding: 5px;
+    border: 3px #9a9a9a solid;
+    border-radius: 5px;
+    height: 50px;
+    margin: 2px 2px!important;
+}
+
+form h5 {
+    display: inline-block;
+    vertical-align: top;
+}
+
+form label {
+    display: inline-block;
+    vertical-align: top;
+    font-weight: bold;
+    /*margin: 2px;*/
+    padding: 2px;
+    border: 1px #b6b6b6 solid;
+    border-radius: 3px;
+    transition: all 0.5s easy-in-out;
+}
+
+form label.active {
+    background-color: #EFF3FF;
+}
+
+form label.selected {
+    /*border:1px red dashed;*/
+    background-color: rgba(76, 255, 0, 0.46);
+}
+
+form #gauge {
+    display: inline-block;
+}
+
+form input {
+    display: inline;
+}
+
+form .btn-group {
+    display: inline-block!important;
+    height: 16px!important;
+}
+
+#description {
+    border: 1px #ccc solid;
+    float: left;
+    padding: 5px;
+    /*display: inline-table;*/
+    width: 220px;
+    border-radius: 5px;
+}
+
+#vis {
+    margin-left: 5px;
+    display: inline-block;
+    border: 1px #ccc solid;
+    border-radius: 0px;
+}
+
+footer {
+    float: left;
+    position: absolute;
+    width: 80%;
+    bottom: 20px;
+    background-color: #ccc;
+    opacity: 0.8;
+}
+
+.slider.slider-horizontal {
+    /*border: 1px red dashed;*/
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.slider.slider-horizontal .slider-handle {
+    transition-duration: 1s;
+}
+
+.slider.slider-horizontal .slider-tick-label-container .slider-tick-label {
+    width: 20%;
+    font-size: 7pt;
+}
