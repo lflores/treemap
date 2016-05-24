@@ -27,7 +27,10 @@ This is a visual component that draw a treemap chart, based on [d3](http://d3js.
 ####Flare Example
 Based on common tree data "flare", and using D3js library, this example shows a treemap, with distinct sizes and colors, you can dive into data. hierarchy.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 ![Gravity Bubbles Flare Example](http://rawgit.com/lflores/treemap/master/src/images/treemap-flare.gif)
 
 
@@ -168,4 +171,8 @@ Support for Internet Explorer 9.
 
 
 ## Copyright
+<<<<<<< HEAD
 Copyright (c) 2016 Triad, contributors. Released under the GPL-3.0 license 
+=======
+Copyright (c) 2016 triad, contributors. Released under the GPL-3.0 license 
+>>>>>>> origin/master
