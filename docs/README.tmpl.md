@@ -22,7 +22,7 @@
 ## Plugin api
 {%= _.doc("plugin-api.md") %}
 
-## Testing (New)
+## Testing
 {%= _.doc("testing.md") %}
 
 ## Browser Support

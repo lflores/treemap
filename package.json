@@ -1,5 +1,5 @@
 {
-    "name": "treemap",
+    "name": "Treemap",
     "description": "This component, using d3js API, draw an animated treemap",
     "keywords": [
     "tree",
@@ -18,7 +18,7 @@
         "url": "https://github.com/lflores/treemap/issues"
     },
     "author": {
-        "name": "triad",
+        "name": "Triad",
         "email": "flores.leonardo@gmail.com",
         "url": "http://github.com/lflores"
     },

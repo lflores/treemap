@@ -1,9 +1,9 @@
 /**!
- * treemap
+ * Treemap
  * This component, using d3js API, draw an animated treemap
  *
  * @license 
- * @author triad <flores.leonardo@gmail.com> (http://github.com/lflores)
+ * @author Triad <flores.leonardo@gmail.com> (http://github.com/lflores)
  * @version 0.3.2
  **/
 

@@ -1,4 +1,4 @@
-# treemap
+# Treemap
 
 > This component, using d3js API, draw an animated treemap
 
@@ -26,6 +26,7 @@ This is a visual component that draw a treemap chart, based on [d3](http://d3js.
 
 ####Flare Example
 Based on common tree data "flare", and using D3js library, this example shows a treemap, with distinct sizes and colors, you can dive into data. hierarchy.
+
 ![Gravity Bubbles Flare Example](http://rawgit.com/lflores/treemap/master/src/images/treemap-flare.gif)
 
 
@@ -145,8 +146,8 @@ $(function() {
 ```
 
 
-## Testing (New)
-Now project supports testing and run all tests under tests folder.
+## Testing
+Project supports testing and run all tests under tests folder.
 Solving dependencies with karma and jasmine you can run tests with.
 ```
 grunt test
@@ -166,4 +167,4 @@ Support for Internet Explorer 9.
 
 
 ## Copyright
-Copyright (c) 2016 triad, contributors. Released under the GPL-3.0 license 
+Copyright (c) 2016 Triad, contributors. Released under the GPL-3.0 license 
