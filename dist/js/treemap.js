@@ -4,7 +4,7 @@
  *
  * @license 
  * @author triad <flores.leonardo@gmail.com> (http://github.com/lflores)
- * @version 0.0.2
+ * @version 0.3.2
  **/
 
 (function (root, factory) {
@@ -443,8 +443,6 @@ TreeMap.prototype._position = function () {
     });
 };
 
-
-
 TreeMap.prototype._zoomIn = function (d) {
     var that = this;
     //Escondo todos excepto el que seleccioné
@@ -505,17 +503,6 @@ TreeMap.prototype._zoomIn = function (d) {
         });
 };
 
-/**
-This method captures the item clic and throws the event to listeners
-*/
-TreeMap.prototype._onclick = function (d, i) {
-
-};
-
-TreeMap.prototype._visibility = function (d, visibility) {
-    this.style("display", visibility ? null : "none");
-};
-
 TreeMap.prototype._draw_text = function (text, that) {
     text.each(function (d) {
         d3.select(this).text(null);
@@ -560,18 +547,6 @@ TreeMap.prototype._draw_text = function (text, that) {
             line = lines.pop();
         } while (line);
     });
-};
-/**
-La secuencia sería
--Separar por linea
--Si una linea no entra, separarla por -
--Si no entra, separarla por espacios
--Si no entra ocultarla
-*/
-TreeMap.prototype._wrapText = function (tspan, d) {
-    var spriters = ["\n", "-", "_", "\s"];
-    var _text = tspan.text();
-
 };
 
 TreeMap.prototype._text_position = function (d, _this) {
@@ -659,10 +634,6 @@ TreeMap.prototype.config = function (config) {
         .transition()
         .style("width", this._config.width + "px")
         .style("height", this._config.height + "px");
-};
-
-TreeMap.prototype.remove = function () {
-    alert("Llamando a eliminar el treemap");
 };
 
 TreeMap.prototype.resize = function () {

@@ -2,7 +2,7 @@
 
 > This component, using d3js API, draw an animated treemap
 
-![Version](http://img.shields.io/version/0.0.2.png?color=green)
+![Version](http://img.shields.io/version/0.3.2.png?color=green)
 
 
 ## Features
@@ -32,52 +32,15 @@ Also the component include 3 views:
 
 ## Examples
 ####Default:
-![Gravity Bubbles ungruped](http://rawgit.com/lflores/gravity-bubbles/master/src/images/gravity-bubbles-default.png)
-####Grouping by color:
-![Gravity Bubbles Color groups](http://rawgit.com/lflores/gravity-bubbles/master/src/images/gravity-bubbles-group-color.png)
-####Grouping by category:
-![Gravity Bubbles Category groups](http://rawgit.com/lflores/gravity-bubbles/master/src/images/gravity-bubbles-group-category.png)
+![Treemap Default](http://rawgit.com/lflores/treemap/master/src/images/treemap-flare-example.gif)
 
-####[Flare Example](http://lflores.github.com/flare/)
-Based on common tree data "flare", and using D3js library, this example shows bubbles grouped in center (force), like earth gravity, with distinct sizes and colors, you can dive into data hierarchy.
-
-![Gravity Bubbles Flare Example](http://rawgit.com/lflores/gravity-bubbles/master/src/images/gravity-bubbles-flare.gif)
-
-[Please show me](http://lflores.github.com/flare/)
-
-####[Evolution Example](http://lflores.github.com/evolution/)
-Based on D3js library, this example shows the evolution of bubbles through time, loading data in asynchronous form, under demand. Or you can push play to automate the action.
-
-![Gravity Bubbles Evolution](http://rawgit.com/lflores/gravity-bubbles/master/src/images/gravity-bubbles-timeline.gif)
-
-[I want to see it...](http://lflores.github.com/evolution/)
-
-####[Martian Example](http://lflores.github.com/martian/)(Thanks to [headwins](https://github.com/headwinds))
-In the year 2030, we face a new form of global conscription. Since we've ruined our planet, NATO has ordered the remaining population to board the fleet of Dragon class drop ships headed for that distant red rock in the sky which we'll have to now call home. Many are seeking asylum status in Southeast Asia to avoid ruining another planet.
-
-![Martian Example](http://rawgit.com/lflores/gravity-bubbles/master/src/images/gravity-bubbles-martian.gif)
-
-
-####[Gravity Label](http://jsfiddle.net/6cLpuL7j/)
-This fiddle example shows how to configure the component for adaptable label to enabled space
-
-####Colors Changes:
-It's easy to change bubble colors, setting points and colors arrays.
-
-![Gravity Bubbles Color Changes](http://rawgit.com/lflores/gravity-bubbles/master/src/images/gravity-bubbles-color-change.gif)
+####Flare Example
+Based on common tree data "flare", and using D3js library, this example shows a treemap, with distinct sizes and colors, you can dive into data. hierarchy.
+![Gravity Bubbles Flare Example](http://rawgit.com/lflores/treemap/master/src/images/treemap-flare-example.gif)
 
 
 ## Get started
-If you want to see it in action, go to [jsfiddle](https://jsfiddle.net/leoflores/6cLpuL7j/6/) that explain some concepts of use, and show how to change some properties. Or if you want to see a more complex use, please go to [gravity-bubbles](http://lflores.github.com/flare)
-Currently I'm documenting the project, and please, [contact me](https://github.com/lflores/treemap/issues) if you want to help or discovered some issue.
-To start using it, you must to download this proyect, and solve next dependencies.
-
-Dependencies:
-* [jquery](http://jquery.com/download/)
-* [d3 api](https://github.com/mbostock/d3)
-* [linear-gauge](https://github.com/lflores/linear-gauge) (only for examples)
-* [jquery-ui](https://jqueryui.com/) (only for examples)
-
+In folder examples you have and example called flare, that shows functionalities of component.
 
 
 ## Options
@@ -143,96 +106,11 @@ You can pass these options to the initialize function to set a custom look and f
 </table>
 
 #### Styles
-<table>
-<tr>
-        <th>Selector</th>
-        <th>Description</th>
-        <th>Is in use?</th>
-        <th>Observations</th>
-    </tr>
-    <tr>
-        <td>.gravity-container</td>
-        <td>It's just to hold styles asociated with this chart</td>
-        <td>Yes</td>
-        <td>Change it to add borders, background, and so on</td>
-    </tr>
-    <tr>
-        <td>.gravity-container .bubble </td>
-        <td>This class holds basic properties to bubbles, such as border and opacity</td>
-        <td>Yes</td>
-        <td>Overwrite to change. Don't all properties related with color, are changed by component</td>
-    </tr>
-    <tr>
-        <td>.gravity-container .bubble:hover</td>
-        <td>This class holds basic properties to bubbles, when user hover it</td>
-        <td>Yes</td>
-        <td>Overwrite to change.</td>
-    </tr>
-        <tr>
-        <td>.gravity-container .bubble.drilldown</td>
-        <td>This class holds basic properties to bubbles, when user hover it</td>
-        <td>No</td>
-        <td>Overwrite to change.</td>
-    </tr>
-    <tr>
-        <td>.gravity-container .group</td>
-        <td>This class is for group background</td>
-        <td>Yes</td>
-        <td>Overwrite to change or add border or colors.</td>
-    </tr>
-    <tr>
-        <td>.gravity-container rect.group.multiple</td>
-        <td>This class is for group background when is mutiple type</td>
-        <td>No?</td>
-        <td>Overwrite to change or add border or colors.</td>
-    </tr>
-    <tr>
-        <td>.gravity-container .group-text</td>
-        <td>This class is to define properties of group text, such as font, color and so on</td>
-        <td>Yes</td>
-        <td>Overwrite to change or add stroke or font size.</td>
-    </tr>
-    <tr>
-        <td>.gravity-container .legend-circle</td>
-        <td>Style for legend at right that shows information about drawed bubbles (max, min)</td>
-        <td>Yes</td>
-        <td>Overwrite to change stroke or change dash array.</td>
-    </tr>
-    <tr>
-        <td>.gravity-container .legend-text</td>
-        <td>Style for text of legend</td>
-        <td>Yes</td>
-        <td>Overwrite to change stroke or font.</td>
-    </tr>
-    <tr>
-        <td>.gravity-container text.label</td>
-        <td>Style for labels inside bubble</td>
-        <td>Yes</td>
-        <td>Overwrite to change stroke or font.</td>
-    </tr>
-    <tr>
-        <td>.gravity-container .tooltip</td>
-        <td>This style define tooltip format (when hovering bubble)</td>
-        <td>Yes</td>
-        <td>Overwrite to change size, background color, font, etc.</td>
-    </tr>
-    <tr>
-        <td>.gravity-container .tooltip .title</td>
-        <td>This style customize title of tooltip</td>
-        <td>Yes</td>
-        <td>Overwrite to change size, background color, font, etc.</td>
-    </tr>
-    <tr>
-        <td>.gravity-container .tooltip .name</td>
-        <td>This style customize title of tooltip</td>
-        <td>Yes</td>
-        <td>Overwrite to change size, background color, font, etc.</td>
-    </tr>    
-</table>
+-Under construction-
 
 
 ## Callbacks
-When the user click on bubble, a <strong>click</strong> is fired to comunicate that values have been clicked. It can be used to do a drilldown
+When the user click on rectangle, a <strong>click</strong> is fired to comunicate that values have been clicked. It can be used to do a drilldown, such as flare example, in examples folder
 <table>
     <tr>
         <th>Event</th>
@@ -252,30 +130,27 @@ When the user click on bubble, a <strong>click</strong> is fired to comunicate t
 
 ```javascript
 $(function() {
-    // instantiate the plugin
+    //instantiate the plugin
     
-    chart = new GravityBubbles({
-                id: "vis",
-                sizeById: "size",
-                colorById: "perc",
-                data: {
-                    tooltip: function(d) {
-                        //Parameter d is clicked data
-                        //You can return a string template
-                        return "<b>Name:</b>{name}<br><b>Size:</b> {size}<br><b>Size of Total:</b> {perc}%";
-                    },
-                    label: {
-                        //{name} Indicates that will try to show property value called name
-                        template : "{name}\n{perc}%",
-                        //Force the label to fill bubble and scale it
-                        autofit: true
-                    },
-
-                    onclick: function(d) {
-                        //Parameter d is clicked data
-                    }
+        chart = new TreeMap({
+            id: "vis",
+            width: 600,
+            height: 300,
+            sizeById: "size",
+            colorById: "perc",
+            data: {
+                tooltip: function (d) {
+                    return "<b>Name:</b>{name}<br><b>Size:</b> {size}<br><b>Size of Total:</b> {perc}%";
+                },
+                label: {
+                    template: "{name}\n{perc}%",
+                    autofit: false
+                },
+                onclick: function (d, node) {
+                    //you code here to clickable data
                 }
-            });
+            }
+        });
 });
 ```
 
@@ -302,7 +177,3 @@ Support for Internet Explorer 9.
 
 ## Copyright
 Copyright (c) 2016 triad, contributors. Released under the GPL-3.0 license 
-
-Special Thanks to contributors:
-* [headwinds](http://github.com/headwinds)
-* [vlandham](http://github.com/vlandham)
