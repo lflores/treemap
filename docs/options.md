@@ -88,7 +88,7 @@ You can pass these options to the initialize function to set a custom look and f
     </tr>
     <tr>
         <td><strong>.treemap-container .level-*</strong></td>
-        <td>Class applied using depth attribute, used by (tree layout)[https://github.com/d3/d3/wiki/Tree-Layout], start in 0 and ends with deepest level.</td>
+        <td>Class applied using depth attribute, used by <a href="https://github.com/d3/d3/wiki/Tree-Layout">tree layout</a>, start in 0 and ends with deepest level.</td>
         <td>Yes</td>
         <td>By default component shows level 1, you can play with css properties if you have more than one</td>
     </tr>
