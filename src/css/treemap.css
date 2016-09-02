@@ -42,36 +42,32 @@
     display: none;
 }
 
-
-/*
-.treemap-container .node.zoomed {
-    background: #fff!important;
-    border: 1px solid #e0e0e0!important;
-}
-*/
-
 .treemap-container .node.selected {
-    stroke: #716262;
-    stroke-width: 2px;
+    stroke: #428bca;
+    stroke-width: 3px;
 }
 
 .treemap-container .label {
-    /*vertical-align: central;*/
-    /*border: 1px red dashed;*/
-    /*fill: #fff;*/
-    /*
-    stroke: #4f4f4f;
-    stroke-width: 1px;
-*/
     font-size: 0.7em;
     cursor: pointer;
     text-anchor: middle;
+    stroke: rgba(0, 0, 0, 0.5);
+    stroke-width: 1px;
+    fill: #2c2c2c;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.treemap-container g:hover .label {
+    fill: #313131;
+}
+
+.treemap-container .label.selected {
+    fill: #428bca;
 }
 
 .treemap-tooltip {

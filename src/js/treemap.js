@@ -18,6 +18,7 @@ TreeMap = function (config) {
         colorById: "perc",
         sizeById: "size",
         showChild: false,
+        labelFactor: 0.8,
         data: {
             label: {
                 template: "{description}",
@@ -63,6 +64,7 @@ TreeMap.prototype.create = function () {
         .value(function (d) {
             return d.hasOwnProperty(that._config.sizeById) ? Number(d[that._config.sizeById]) : null;
         });
+    this._selected = [];
 };
 
 TreeMap.prototype.data = function (data) {
@@ -72,17 +74,7 @@ TreeMap.prototype.data = function (data) {
     if (this.nodes) {
         this.nodes.classed("selected", false);
     }
-    //    this._nodes = [];
-    //    this._data.forEach((function (_this) {
-    //        return function (d) {
-    //            return _this._nodes.push(d);
-    //        };
-    //    })(this));
-    //    this._nodes.sort((function (_this) {
-    //        return function (a, b) {
-    //            return b[_this._config.sizeById] - a[_this._config.sizeById];
-    //        }
-    //    })(this));
+    this._selected = [];
     this.refresh();
 };
 
@@ -118,15 +110,18 @@ This method return text to label.
 @method _label_by
 */
 TreeMap.prototype._label_by = function (d, that) {
+    var _label = "";
     if (typeof that._config.data.label === "function") {
-        var _text = that._config.data.label.call(d, that);
+        _label = that._config.data.label.call(d, that);
         return that._data_replace(d, _text);
+    } else if (typeof that._config.data.label === "object" && typeof that._config.data.label.template === "function") {
+        _label = that._config.data.label.template.call(that, [d]);
+        return that._data_replace(d, _label, that._config.data.label.formatter);
     } else if (typeof that._config.data.label === "object" && that._config.data.label.template) {
-        var _label = that._config.data.label.template;
+        _label = that._config.data.label.template;
         return that._data_replace(d, _label, that._config.data.label.formatter);
     }
-    return "";
-    //return that._data_replace(d, that._config.data.label);
+    return _label;
 };
 
 /**
@@ -178,6 +173,9 @@ TreeMap.prototype.sizeById = function (sizeById) {
     this.refresh();
 };
 
+/**
+Update all graphics items, rectangles and texts
+*/
 TreeMap.prototype.refresh = function () {
     var _this = this;
     this.rectangles = this.svg.datum(this._data).selectAll("g")
@@ -193,10 +191,14 @@ TreeMap.prototype.refresh = function () {
         })
         .on("click", function (d, i) {
             _this.hide_details(d, i, _this);
-            d3.select(".node").classed("selected", function (d, i) {
-                return !d3.select(".node").classed("selected");
+            d3.select(this).selectAll(".node").classed("selected", function (d, i) {
+                return !d3.select(this).classed("selected");
+            });
+            d3.select(this).selectAll(".label").classed("selected", function (d, i) {
+                return !d3.select(this).classed("selected");
             });
             _this._config.data.onclick.call(_this, d, this, i);
+            _this._toggle_selected(d);
         })
         .on("mouseenter", function (d, i) {
             var _color = _this.colorBy(d, _this);
@@ -207,6 +209,9 @@ TreeMap.prototype.refresh = function () {
         })
         .append("rect")
         .attr("class", function (d) {
+            if (_this.isSelected(d)) {
+                return "node level-" + d.depth + " selected";
+            }
             return "node level-" + d.depth;
         })
         .call(_this._position)
@@ -231,6 +236,9 @@ TreeMap.prototype.refresh = function () {
     this.rects
         .transition()
         .attr("class", function (d) {
+            if (_this.isSelected(d)) {
+                return "node level-" + d.depth + " selected";
+            }
             return "node level-" + d.depth;
         })
         .call(this._position, this)
@@ -256,6 +264,9 @@ TreeMap.prototype.refresh = function () {
     this.rectangles.exit().remove();
 };
 
+/**
+Update position of rectangle
+*/
 TreeMap.prototype._position = function () {
     this.attr("x", function (d) {
         return d.x;
@@ -266,6 +277,24 @@ TreeMap.prototype._position = function () {
     }).attr("height", function (d) {
         return d.dy < 0 ? 0 : d.dy;
     });
+};
+
+/**
+Add/Remove a selected data
+*/
+TreeMap.prototype._toggle_selected = function (d) {
+    if (this._selected.indexOf(d) > -1) {
+        this._selected.splice(this._selected.indexOf(d), 1);
+    } else {
+        this._selected.push(d);
+    }
+};
+
+/**
+Return a boolean that indicates if data is selected
+*/
+TreeMap.prototype.isSelected = function (d) {
+    return this._selected.indexOf(d) > -1;
 };
 
 TreeMap.prototype._zoomIn = function (d) {
@@ -395,13 +424,13 @@ TreeMap.prototype._text_position = function (d, _this) {
             //Si la etiqueta es autofit calculo la escala para mostrarla 
             //y calculo el alto y ancho para moverlo
             if (_this._config.data.label && _this._config.data.label.hasOwnProperty("autofit") && _this._config.data.label.autofit) {
-                var _scale = d.dx / box.width;
+                var _scale = (d.dx / box.width);
                 _scale = d.dx === 0 || box.width === 0 ? 1 : _scale;
 
                 var tx = d.x + ((box.width * _scale) / 2);
                 var ty = d.cy - ((box.height * _scale) / 2);
                 var _trans = "translate({0},{1}),scale({2},{2})";
-                return _trans.replaceParams([tx, ty, _scale]);
+                return _trans.replaceParams([tx, ty, _scale * 0.8]);
             }
             var x = d.x + (d.dx / 2) - (box.width / 2) + (box.width / 2);
             var y = d.y + (d.dy - box.height) / 2;
@@ -421,6 +450,10 @@ TreeMap.prototype.show_details = function (data, i, element) {
         content = element._config.data.tooltip.call(element, data);
         //El String que devuelve los uso para reemplazar en caso que el resultado tenga wildcards
         content = element._data_replace(data, content);
+    } else if (typeof element._config.data.tooltip === "object" && typeof element._config.data.tooltip.template === "function") {
+        //El String que devuelve los uso para reemplazar en caso que el resultado tenga wildcards
+        var _tooltip = element._config.data.tooltip.template.call(element, data);
+        content = element._data_replace(data, _tooltip, element._config.data.tooltip.formatter);
     } else if (typeof element._config.data.tooltip === "object" && typeof element._config.data.tooltip.template === "string") {
         //El String que devuelve los uso para reemplazar en caso que el resultado tenga wildcards
         content = element._data_replace(data, element._config.data.tooltip.template,
