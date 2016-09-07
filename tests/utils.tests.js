@@ -1,12 +1,12 @@
-function getContainer(id) {
-    var $child = $("<div id=\"" + id + "\"></div>");
-    $child.css("height", 300);
-    $child.css("width", 600);
-    $child.css("border", "1px gray solid");
-    $child.css("border-radius", "5px");
-    $("body").append($child);
-    return $child[0];
-}
+//function getContainer(id) {
+//    var $child = $("<div id=\"" + id + "\"></div>");
+//    $child.css("height", 300);
+//    $child.css("width", 600);
+//    $child.css("border", "1px gray solid");
+//    $child.css("border-radius", "5px");
+//    $("body").append($child);
+//    return $child[0];
+//}
 
 
 describe('objects tests', function () {
@@ -36,8 +36,8 @@ describe('objects tests', function () {
                 }
             }
         };
-        var container = getContainer("lala")
-        var bubbles = new GravityBubbles({
+        var container = $("body").container("lala")
+        var bubbles = new TreeMap({
             id: "lala"
         });
         //var config = deepExtend(_defaults, _config);

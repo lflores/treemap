@@ -7,8 +7,8 @@ TreeMap = function (config) {
     };
     var _defaults = {
         sticky: false,
-        height: 100,
-        width: 100,
+        //height: 100,
+        //width: 100,
         //Colores originales de comercial
         //colors: ["#ff0000", "#ff9a00", "#ffeb00", "#d6ff00", "#08ff00"],
         //colors: ["#000", "#f20000", "#fbb400", "#ddff00", "#9fec00"],
@@ -18,7 +18,7 @@ TreeMap = function (config) {
         colorById: "perc",
         sizeById: "size",
         showChild: false,
-        labelFactor: 0.8,
+        labelscale: 0.9,
         data: {
             label: {
                 template: "{description}",
@@ -46,13 +46,19 @@ TreeMap.prototype.create = function () {
         .domain(this._config.points)
         .range(this._config.colors.reverse());
 
-    this.container = d3.select("#" + this._config.id);
+    if (this._config.container) {
+        this.container = d3.select(this._config.container);
+    } else {
+        this.container = d3.select("#" + this._config.id);
+    }
     this.container.style("overflow", "hidden");
+    this._config.width = typeof this._config.width === 'undefined' ? this.container[0][0].clientWidth : this._config.width;
+    this._config.height = typeof this._config.height === 'undefined' ? this.container[0][0].clientHeight : this._config.height;
 
     this.svg = this.container.append("svg")
         .attr("class", "treemap-container")
-        .attr("width", this._config.width)
-        .attr("height", this._config.height);
+        .style("width", this._config.width)
+        .style("height", this._config.height);
 
     this.treemap = d3.layout.treemap()
         .size([this._config.width, this._config.height])
@@ -231,6 +237,8 @@ TreeMap.prototype.refresh = function () {
     this.rects = this.svg.selectAll(".node").data(this.treemap.nodes);
 
     this.texts = this.svg.selectAll(".label").data(this.treemap.nodes);
+    this.texts
+        .call(this._draw_text, this);
 
     //Rectangles update
     this.rects
@@ -358,49 +366,51 @@ TreeMap.prototype._zoomIn = function (d) {
 };
 
 TreeMap.prototype._draw_text = function (text, that) {
+    text
+        .text(null);
     text.each(function (d) {
-        d3.select(this).text(null);
         var _text = that._label_by(d, that);
+        if (!_text) {
+            return;
+        }
         var text = d3.select(this),
-            lines = _text.split(/\n+/).reverse(),
-            line = [],
+            lines = _text.splitMultiple().reverse(),
+            line = lines.pop(),
             lineNumber = 0,
-            lineHeight = 1.1, // ems
+            lineHeight = 0.7, // ems
             x = text.attr("x"),
             y = text.attr("y"),
             dy = d.dy - 4,
             data = text.data(0);
 
-        //tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", "1.1em")
-        line = lines.pop();
         do {
+            /*jshint -W083 */
             tspan = text
                 .append("tspan")
                 .attr("x", 0)
                 .attr("y", y)
-                .attr("dy", lineHeight + "em")
+                .attr("dy", "1em")
+                .classed("head", function (d) {
+                    return lineNumber === 0;
+                })
                 .text(line);
-
-            var loop = 0;
-            while (tspan.node().getComputedTextLength() > d.dx && loop++ < 5) {
-                _text = tspan.text();
-                _splited = _text.split("-");
-                if (_splited.length === 1) {
-                    _splited = _text.split(" ");
-                } //Agrego el primer resultado
-                tspan.text(_splited[0].trim());
-                if (_splited.length > 1) {
-                    tspan = text
-                        .append("tspan")
-                        .attr("x", 0)
-                        .attr("y", y)
-                        .attr("dy", lineHeight + "em")
-                        .text(_splited[1].trim());
-                }
-            }
+            lineNumber++;
             line = lines.pop();
         } while (line);
-    });
+        //Cuando tiene varias lineas, las alinea centradas
+        //Se reemplazó por estilos
+        var _width = this.getBBox().width;
+        var nodes = Array.prototype.slice.call(this.childNodes, 0);
+        nodes
+            .forEach(function (node) {
+                var _span_width = node.getComputedTextLength();
+                var x = _width - _span_width;
+                d3.select(node).attr("x", x > 0 ? x / 2 : 0);
+                //d3.select(node).attr("width", x);
+                //d3.select(node).attr("swidth", _span_width);
+
+            });
+    }).call(that._text_position, that);
 };
 
 TreeMap.prototype._text_position = function (d, _this) {
@@ -421,20 +431,27 @@ TreeMap.prototype._text_position = function (d, _this) {
             var box = this.getBBox();
             d.cx = d.x + d.dx / 2;
             d.cy = d.y + d.dy / 2;
+            var _trans = "translate({0},{1})";
+            var _scale = 1;
+            var tx = d.cx - (box.width / 2);
+            var ty = d.cy - (box.height / 2);
+
             //Si la etiqueta es autofit calculo la escala para mostrarla 
             //y calculo el alto y ancho para moverlo
             if (_this._config.data.label && _this._config.data.label.hasOwnProperty("autofit") && _this._config.data.label.autofit) {
-                var _scale = (d.dx / box.width);
-                _scale = d.dx === 0 || box.width === 0 ? 1 : _scale;
+                _trans = "translate({0},{1}),scale({2},{2})";
+                var _hscale = (d.dx / box.width);
+                var _vscale = (d.dy / box.height);
 
-                var tx = d.x + ((box.width * _scale) / 2);
-                var ty = d.cy - ((box.height * _scale) / 2);
-                var _trans = "translate({0},{1}),scale({2},{2})";
-                return _trans.replaceParams([tx, ty, _scale * 0.8]);
+                _hscale = d.dx === 0 || box.width === 0 ? 1 : _hscale;
+                _vscale = d.dy === 0 || box.height === 0 ? 1 : _vscale;
+
+                _scale = d3.min([_hscale, _vscale]);
+
+                tx = d.cx - ((box.width * _scale * _this._config.labelscale) / 2);
+                ty = d.cy - ((box.height * _scale * _this._config.labelscale) / 2);
             }
-            var x = d.x + (d.dx / 2) - (box.width / 2) + (box.width / 2);
-            var y = d.y + (d.dy - box.height) / 2;
-            return "translate(" + x + "," + y + ")";
+            return _trans.replaceParams([tx, ty, _scale * _this._config.labelscale]);
         });
 };
 
@@ -477,10 +494,11 @@ TreeMap.prototype.config = function (config) {
         return config;
     }
     this._config = $.extend(true, this._config, config);
-    d3.select("#" + this._config.id)
-        .transition()
-        .style("width", this._config.width)
-        .style("height", this._config.height);
+    this.svg
+        .style("margin-left", this.margin.left)
+        .style("margin-top", this.margin.top)
+        .style("width", this._config.width - this.margin.left - this.margin.right)
+        .style("height", this._config.height - this.margin.top - this.margin.bottom);
 
     this.treemap.size([this._config.width, this._config.height]);
 
@@ -492,6 +510,9 @@ TreeMap.prototype.config = function (config) {
         .transition()
         .style("width", this._config.width + "px")
         .style("height", this._config.height + "px");
+    if (this._data) {
+        this.refresh();
+    }
 };
 
 TreeMap.prototype.resize = function () {

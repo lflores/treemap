@@ -60,7 +60,7 @@ You can pass these options to the initialize function to set a custom look and f
 </table>
 
 ### Styles
-You can pass these options to the initialize function to set a custom look and feel for the plugin.
+You can use this classes to change the look and feel of component, such as font, border colors, and so on.
 <table>
     <tr>
         <th>Selector</th>
@@ -90,7 +90,7 @@ You can pass these options to the initialize function to set a custom look and f
         <td><strong>.treemap-container .level-*</strong></td>
         <td>Class applied using depth attribute, used by <a href="https://github.com/d3/d3/wiki/Tree-Layout">tree layout</a>, start in 0 and ends with deepest level.</td>
         <td>Yes</td>
-        <td>By default component shows level 1, you can play with css properties if you have more than one</td>
+        <td>By default component shows level 1, you can play with css properties if you have more than one at same time</td>
     </tr>
     <tr>
         <td><strong>.treemap-container .node.selected</strong></td>
@@ -104,6 +104,24 @@ You can pass these options to the initialize function to set a custom look and f
         <td>Yes</td>
         <td>Also receive .level-* class to show/hide level items</td>
     </tr>
+    <tr>
+    <td><strong>.treemap-container g:hover .label</strong></td>
+    <td>Style to format label text</td>
+        <td>Yes</td>
+        <td>Also receive .level-* class to show/hide level items</td>
+        </tr>
+    <tr>
+    <td><strong>.treemap-container .label tspan</strong></td>
+    <td>Each label, can be splited into text lines, using \n or special chars. This class controls styles for all lines of text.</td>
+        <td>Yes</td>
+        <td>&nbsp;</td>
+        </tr>
+    <tr>
+    <td><strong>.treemap-container .label tspan.head</strong></td>
+    <td>First line of text applies this style, to control as mor important part of text</td>
+        <td>Yes</td>
+        <td>By default has uppercase applied to text</td>
+        </tr>
     <tr>
         <td><strong>.treemap-tooltip </strong></td>
         <td>Style to format tooltip</td>

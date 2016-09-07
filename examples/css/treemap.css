@@ -39,12 +39,12 @@
   stroke-width: 3px;
 }
 .treemap-container .label {
-  font-size: 0.7em;
+  font-size: 1em;
   cursor: pointer;
-  text-anchor: middle;
-  stroke: rgba(0, 0, 0, 0.5);
-  stroke-width: 1px;
-  fill: #2c2c2c;
+  /*text-anchor: middle;*/
+  /*stroke: rgba(0, 0, 0, 0.5);*/
+  /*stroke-width: 1px;*/
+  /*fill: #2c2c2c;*/
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -54,6 +54,21 @@
 }
 .treemap-container g:hover .label {
   fill: #313131;
+}
+.treemap-container .label tspan {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.treemap-container .label tspan.head {
+  font-size: 1.2em;
+  font-weight: bold;
+  /**
+    for me, visualy looks best bold 
+    instead of uppercase, but you can use as you wish
+    */
+  /*text-transform: uppercase*/
 }
 .treemap-container .label.selected {
   fill: #428bca;
