@@ -28,5 +28,8 @@
 ## Browser Support
 {%= _.doc("browser-support.md") %}
 
+## Donate
+{%= _.doc("donate.md") %}
+
 ## Copyright
 {%= copyright %} {%= license %} 
