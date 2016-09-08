@@ -4,7 +4,7 @@
  *
  * @license 
  * @author Triad <flores.leonardo@gmail.com> (http://github.com/lflores)
- * @version 0.3.2
+ * @version 0.5.0
  **/
 
 (function (root, factory) {
