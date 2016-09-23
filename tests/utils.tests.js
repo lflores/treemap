@@ -42,7 +42,8 @@ describe('objects tests', function () {
         });
         //var config = deepExtend(_defaults, _config);
         //var config = bubbles.extend(_defaults, _config);
-        var config = deepExtend(_defaults, _config);
+        //var config = deepExtend(_defaults, _config);
+        var config = $.extend(true, _defaults, _config);
         expect(config.sticky).toBe(false);
         expect(config.minRadius).toBe(10);
         expect(config.width).toBe(800);

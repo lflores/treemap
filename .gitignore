@@ -6,3 +6,7 @@ tmp/*
 
 #ejemplo de kcc
 examples/kcc/**
+
+.grunt/**
+
+_**.*

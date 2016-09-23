@@ -181,6 +181,19 @@ module.exports = function (grunt) {
                 src: '<%= cfg.filename %>.min.js',
                 dest: '<%= dirs.demo %>/js/',
             },
+        },
+        jasmine: {
+            components: {
+                src: [
+                    'tests/libs/*js',
+                    'dist/js/treemap.min.js'
+              ],
+                options: {
+                    specs: 'tests/*.tests.js',
+                    keepRunner: true,
+                    //helpers: 'test/spec/*.js'
+                }
+            }
         }
     });
 
@@ -205,4 +218,7 @@ module.exports = function (grunt) {
     grunt.registerTask('all', ['default', 'less']);
     grunt.registerTask('meteor-publish', ['exec:meteor-init', 'exec:meteor-publish', 'exec:meteor-cleanup']);
     grunt.registerTask('meteor', ['exec:meteor-init', 'exec:meteor-publish', 'exec:meteor-cleanup']);
+    grunt.registerTask('travis', [
+        'jshint', 'jasmine'
+    ]);
 };
