@@ -1,1 +1,1 @@
-![Version](http://img.shields.io/version/{%= version %}.png?color=green)
+![Version](http://img.shields.io/version/{%= version %}.png?color=green) [![Build Status](https://travis-ci.org/lflores/treemap.svg?branch=master)](https://travis-ci.org/lflores/treemap)
