@@ -2,7 +2,7 @@
 
 > This component, using d3js API, draw an animated treemap
 
-![Version](http://img.shields.io/version/0.5.0.png?color=green) [![Build Status](https://travis-ci.org/lflores/treemap.svg?branch=master)](https://travis-ci.org/lflores/treemap)
+[![Build Status](https://travis-ci.org/lflores/treemap.svg?branch=master)](https://travis-ci.org/lflores/treemap)
 
 
 ## Features
