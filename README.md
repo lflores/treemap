@@ -1,9 +1,7 @@
 # Treemap
-
-> This component, using d3js API, draw an animated treemap
+This component draw an animated treemap, based in d3js library.
 
 [![Build Status](https://travis-ci.org/lflores/treemap.svg?branch=master)](https://travis-ci.org/lflores/treemap)
-
 
 ## Features
 This is a visual component that draw a treemap chart, based on [d3](http://d3js.org/) API library.
