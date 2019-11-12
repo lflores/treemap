@@ -24,20 +24,24 @@
   },
   "contributors": [],
   "scripts": {
+    "single": "karma start --browsers Firefox --single-run",
     "unit": "karma start karma.conf.js ",
-    "test": "npm run unit"
+    "test": "npm run single"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/lflores/treemap.git"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "karma": "~0.12"
+  },
   "dependencies": {
     "browserify": "^16.5.0",
     "jasmine-core": "^3.5.0",
     "karma": "^4.4.1",
     "karma-browserify": "^6.1.0",
     "karma-chrome-launcher": "^3.1.0",
+    "karma-firefox-launcher": "^1.1.0",
     "karma-coverage": "^2.0.1",
     "karma-jasmine": "^2.0.1",
     "karma-webpack": "^4.0.2",
