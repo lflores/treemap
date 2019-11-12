@@ -17,9 +17,14 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
+            'src/js/utils.js',
+            // 'test/**/*.js',
+            'tests/libs/*.*',
+            'tests/**/*.[sS]pec.js',
+            'dist/js/*.js',
             // 'test/**/*.js',
 
-            'test/**/*.[sS]pec.js',
+            'tests/**/*.[sS]pec.js',
             // 'dist/*.js',
         ],
 
@@ -34,7 +39,7 @@ module.exports = function(config) {
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             'dist/*.js': ['coverage'],
-            'test/**/*.[sS]pec.js': ['browserify'],
+            'tests/**/*.[sS]pec.js': ['browserify'],
         },
         // test results reporter to use
         // possible values: 'dots', 'progress'
@@ -52,7 +57,7 @@ module.exports = function(config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_DEBUG,
+        logLevel: config.LOG_INFO,
 
 
         // enable / disable watching file and executing tests whenever any file changes
